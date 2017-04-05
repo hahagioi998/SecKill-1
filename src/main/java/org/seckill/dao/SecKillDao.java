@@ -1,0 +1,36 @@
+package org.seckill.dao;
+
+import org.seckill.entity.SecKill;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by thRShy on 2017/4/5.
+ */
+public interface SecKillDao {
+
+    /**
+     * 减库存
+     * @param seckillId
+     * @param killTime
+     * @return 如果返回的行数大于1，那么表示更新的记录行数
+     */
+    int reduceNumber(long seckillId,Date killTime);
+
+    /**
+     * 根据ID查询秒杀商品列表
+     * @param seckillId
+     * @return
+     */
+    SecKill queryById(long seckillId);
+
+    /**
+     * 根据偏移量查询秒杀商品列表
+     * @param offset
+     * @param limit
+     * @return
+     */
+    List<SecKill> queryAll(int offset,int limit);
+
+}
