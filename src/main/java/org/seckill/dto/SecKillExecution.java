@@ -66,4 +66,14 @@ public class SecKillExecution {
     public void setSuccessKill(SuccessKill successKill) {
         this.successKill = successKill;
     }
+
+    @Override
+    public String toString() {
+        return "SecKillExecution{" +
+                "seckillId=" + seckillId +
+                ", state=" + state +
+                ", stateInfo='" + stateInfo + '\'' +
+                ", successKill=" + successKill +
+                '}';
+    }
 }
