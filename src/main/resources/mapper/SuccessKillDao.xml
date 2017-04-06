@@ -4,16 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.seckill.dao.SuccessKillDao">
     <insert id="insertSuccessKill">
-        INSERT ignore INTO success_killed(seckill_id,user_phone)
-        VALUES (#{seckillId},#{userPhone})
+        INSERT ignore INTO success_killed(seckill_id,user_phone,state)
+        VALUES (#{seckillId},#{userPhone},0)
     </insert>
     
     <select id="queryByIdWithSecKill" resultType="SuccessKill">
         <!--根据ID查询SuccessKill并携带SecKill实体-->
         <!--可以自由控制SQL语句-->
         SELECT
-          sk.seckill_id.
-          sk.uesr_phone,
+          sk.seckill_id,
+          sk.user_phone,
           sk.create_time,
           sk.state,
           s.seckill_id "seckill.seckill_id",
