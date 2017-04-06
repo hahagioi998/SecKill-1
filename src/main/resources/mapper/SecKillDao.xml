@@ -19,7 +19,7 @@
     
     <select id="queryById" resultType="SecKill" parameterType="long">
         SELECT seckill_id,name,number,start_time,end_time,create_time
-        form seckill
+        FROM seckill
         where seckill_id=#{seckillId}
     </select>
     

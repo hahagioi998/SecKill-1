@@ -1,5 +1,6 @@
 package org.seckill.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.seckill.entity.SecKill;
 
 import java.util.Date;
@@ -31,6 +32,6 @@ public interface SecKillDao {
      * @param limit
      * @return
      */
-    List<SecKill> queryAll(int offset,int limit);
+    List<SecKill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
 
 }
