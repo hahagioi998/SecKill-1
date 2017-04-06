@@ -23,4 +23,12 @@ public interface SuccessKillDao {
      */
     SuccessKill queryByIdWithSecKill(long seckillId);
 
+    /**
+     * 根据ID和手机号查询个人的秒杀记录
+     * @param seckillId
+     * @param userPhone
+     * @return
+     */
+    SuccessKill queryByIdaAndPhoneWithSecKill(@Param("seckillId") long seckillId, @Param("userPhone") long userPhone);
+
 }
