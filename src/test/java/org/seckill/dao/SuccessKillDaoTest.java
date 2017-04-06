@@ -38,4 +38,12 @@ public class SuccessKillDaoTest {
         System.out.print(successKill.getSecKill().getName());
     }
 
+    @Test
+    public void queryByIdaAndPhoneWithSecKill() throws Exception{
+        long id=1000L;
+        long userPhone=13964775481L;
+        SuccessKill successKill=successKillDao.queryByIdaAndPhoneWithSecKill(id,userPhone);
+        System.out.print(successKill);
+        System.out.println(successKill.getSecKill());
+    }
 }
