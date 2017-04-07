@@ -11,6 +11,7 @@
     <context:component-scan base-package="org.seckill.service"/>
 
     <!-- 配置事务管理器 -->
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!-- 注入数据库连接词 -->
         <property name="dataSource" ref="dataSource"/>
