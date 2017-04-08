@@ -60,8 +60,7 @@ public class SeckillController {
             method = RequestMethod.POST,
             produces = {"application/json;charset=utf-8"})
     @ResponseBody //返回数据封装为json类型
-    public SeckillResult<Exposer> exposer(Long seckillId){
-
+    public SeckillResult<Exposer> exposer(@PathVariable Long seckillId){
         SeckillResult<Exposer> result;
         try{
             Exposer exposer=seckillService.exportSeckillUrl(seckillId);
@@ -74,13 +73,13 @@ public class SeckillController {
     }
 
     //执行秒杀
-    @RequestMapping(value = "/{seckillId}/{md5}/execution",
+    @RequestMapping(value = "/{seckillId}/{md5}/excution",
             method = RequestMethod.POST,
             produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public SeckillResult<SecKillExecution> execute(@PathVariable("seckillId") Long seckillId,
-                                                   @PathVariable("md5") String md5,
-                                                   @CookieValue(value = "killPhone",required = false) Long phone){
+                                                    @PathVariable("md5") String md5,
+                                                    @CookieValue(value = "killPhone",required = false) Long phone){
         //Springmvc valid
         if(phone==null){
             return new SeckillResult<SecKillExecution>(false,"未登录");
@@ -91,19 +90,20 @@ public class SeckillController {
             return new SeckillResult<SecKillExecution>(true,secKillExecution);
         }catch (RepeatKillException e) {
             SecKillExecution s=new SecKillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);
-            return new SeckillResult<SecKillExecution>(false,s);
+            return new SeckillResult<SecKillExecution>(true,s);
         }catch (SecKillCloseException e){
             SecKillExecution s=new SecKillExecution(seckillId,SeckillStateEnum.END);
-            return new SeckillResult<SecKillExecution>(false,s);
+            return new SeckillResult<SecKillExecution>(true,s);
         }
         catch (Exception e){
             logger.error(e.getMessage(),e);
             SecKillExecution secKillExecution=new SecKillExecution(seckillId,SeckillStateEnum.INNER_ERROR);
-            return new SeckillResult<SecKillExecution>(false,secKillExecution);
+            return new SeckillResult<SecKillExecution>(true,secKillExecution);
         }
     }
 
     @RequestMapping(value = "/time/now",method = RequestMethod.GET)
+    @ResponseBody
     public SeckillResult<Long> time(){
         Date now =new Date();
         return new SeckillResult(true,now.getTime());
