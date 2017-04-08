@@ -22,6 +22,11 @@
                 <span class="glyphicon" id="seckill-box"></span>
             </h2>
         </div>
+        <div class="panel-body">
+            <h2>
+                <span class="glyphicon" id="go-index"></span>
+            </h2>
+        </div>
     </div>
 </div>
 <div id="killPhoneModal" class="modal fade">
