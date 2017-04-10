@@ -4,6 +4,7 @@ import org.seckill.dao.SecKillDao;
 import org.seckill.dao.SuccessKillDao;
 import org.seckill.dto.Exposer;
 import org.seckill.dto.SecKillExecution;
+import org.seckill.dto.cache.RedisDao;
 import org.seckill.entity.SecKill;
 import org.seckill.entity.SuccessKill;
 import org.seckill.enums.SeckillStateEnum;
@@ -36,7 +37,8 @@ public class SeckillServiceImpl implements SeckillService {
     private SecKillDao secKillDao;
     @Autowired
     private SuccessKillDao successKillDao;
-
+    @Autowired
+    private RedisDao redisDao;
     //用于混淆MD5
     public final String slat="knfasdjfnjashdfoiewbfjshadfuobn,,.ahsefdnfpasdkfsoapufphwaeu";
 
@@ -49,10 +51,27 @@ public class SeckillServiceImpl implements SeckillService {
     }
 
     public Exposer exportSeckillUrl(long seckillId) {
-
-        SecKill secKill=secKillDao.queryById(seckillId);
+        //通过redis 缓存优化
+        //优化点：缓存优化：超时的基础上维护一致性
+        /*
+        * 伪代码
+        * get from cache
+        * if null
+        *   get db
+        * else
+        *   put cache
+        * login
+        *
+        * */
+        SecKill secKill=redisDao.getSeckill(seckillId);
         if(secKill==null){
-            return new Exposer(false,seckillId);
+            //访问数据库
+            secKill=secKillDao.queryById(seckillId);
+            if(secKill==null)
+                return new Exposer(false,seckillId);
+            else{
+                redisDao.putSeckill(secKill);
+            }
         }
         Date startTime=secKill.getStartTime();
         Date endTime=secKill.getEndTime();
