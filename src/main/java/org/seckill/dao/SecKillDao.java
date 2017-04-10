@@ -5,6 +5,7 @@ import org.seckill.entity.SecKill;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by thRShy on 2017/4/5.
@@ -34,4 +35,9 @@ public interface SecKillDao {
      */
     List<SecKill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 用存储过程来执行
+     * @param paramMap
+     */
+    void killByProcedure(Map<String,Object> paramMap);
 }
