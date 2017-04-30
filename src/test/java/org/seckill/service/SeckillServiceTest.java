@@ -64,8 +64,8 @@ public class SeckillServiceTest {
             //秒杀未开启
             logger.warn("exposer={}"+exposer);
         }
-        //exposer=Exposer{exposed=false, md5='null', seckillId=1000, now=1491463284338, start=1483200000000, end=1483200060000}
-        //exposer=Exposer{exposed=true, md5='959eb1444daf67507dddb2e5d82c0359', seckillId=1000, now=0, start=0, end=0}
+        //exposer=Exposer{exposed=false, Md5='null', seckillId=1000, now=1491463284338, start=1483200000000, end=1483200060000}
+        //exposer=Exposer{exposed=true, Md5='959eb1444daf67507dddb2e5d82c0359', seckillId=1000, now=0, start=0, end=0}
     }
 
     @Test
