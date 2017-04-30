@@ -40,3 +40,15 @@ CREATE TABLE success_killed(
   PRIMARY KEY (seckill_id,user_phone),
   key idx_create_time(create_time)
 )ENGINE =InnoDB DEFAULT CHAR SET =utf8 COMMENT ='秒杀成功明细表';
+
+
+ -- 个人信息表
+CREATE TABLE user(
+  `user_name` CHAR NOT NULL COMMENT '用户姓名',
+  `user_password` CHAR NOT NULL COMMENT '用户密码',
+  `user_phone` BIGINT NOT NULL COMMENT '用户手机号',
+  `user_address` CHAR COMMENT '地址',
+  `user_mailing_address` CHAR COMMENT '用户邮寄地址',
+  `user_rank` INT COMMENT '用户身份',
+  PRIMARY KEY (user_phone)
+)ENGINE =INDEX DEFAULT CHAR SET =utf8 COMMENT ='用户表';
