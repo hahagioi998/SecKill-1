@@ -20,7 +20,7 @@
             <hr>
             <h2>用户可以在我们这自由的秒杀</h2>
             <hr>
-            <a href="#" class="btn btn-lg btn-default">我是商家</a>
+            <a href="/seckill/seller/${userId}/home" class="btn btn-lg btn-default">我是商家</a>
             <hr>
             <a href="/seckill/list" class="btn btn-lg btn-info">我是用户</a>
             <hr>
