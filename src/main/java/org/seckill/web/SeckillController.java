@@ -31,6 +31,12 @@ public class SeckillController {
     @Autowired
     private SeckillService seckillService;
 
+    //回到主页
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String getIndex(Model model){
+        return "index";
+    }
+
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(Model model){
         //list.jsp + model =ModelAndView
@@ -87,7 +93,7 @@ public class SeckillController {
         SeckillResult<SecKillExecution> result;
         try{
             SecKillExecution secKillExecution=seckillService.executeSeckillprocedure(seckillId,phone,md5);
-            //SecKillExecution secKillExecution=seckillService.executeSeckill(seckillId,phone,md5);
+            //SecKillExecution secKillExecution=seckillService.executeSeckill(seckillId,phone,Md5);
             return new SeckillResult<SecKillExecution>(true,secKillExecution);
         }catch (RepeatKillException e) {
             SecKillExecution s=new SecKillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);
@@ -109,5 +115,16 @@ public class SeckillController {
         Date now =new Date();
         return new SeckillResult(true,now.getTime());
 
+    }
+
+    //跳转到商户界面
+    @RequestMapping(value = "/seller/{sellerId}/home",
+                    method = RequestMethod.POST,
+                    produces = {"application/json;charset=utf-8"})
+    public String SellerIndex(@PathVariable Long sellerId,Model model){
+        if(sellerId==null){
+            return "/seckill/index";
+        }
+        return null;
     }
 }

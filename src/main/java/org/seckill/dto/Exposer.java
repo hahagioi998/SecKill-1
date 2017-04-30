@@ -93,7 +93,7 @@ public class Exposer {
     public String toString() {
         return "Exposer{" +
                 "exposed=" + exposed +
-                ", md5='" + md5 + '\'' +
+                ", Md5='" + md5 + '\'' +
                 ", seckillId=" + seckillId +
                 ", now=" + now +
                 ", start=" + start +
